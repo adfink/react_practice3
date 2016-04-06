@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import QuestionList from "./quiz/QuestionList.jsx";
+import Scorebox from "./quiz/Scorebox.jsx";
 
 class App extends Component{
 
@@ -10,7 +11,7 @@ class App extends Component{
             questions: [
                 {
                     id: 1,
-                    test: 'What is your name?',
+                    text: 'What is your name?',
                     choices: [
                         {
                             id: 'a',
@@ -29,7 +30,7 @@ class App extends Component{
                 },
                 {
                     id: 2,
-                    test: 'What is your favorite color?',
+                    text: 'What is your favorite color?',
                     choices: [
                         {
                             id: 'a',
@@ -48,7 +49,7 @@ class App extends Component{
                 },
                 {
                     id: 3,
-                    test: 'What is your age?',
+                    text: 'What is your age?',
                     choices: [
                         {
                             id: 'a',
@@ -67,7 +68,7 @@ class App extends Component{
                 },
                 {
                     id: 4,
-                    test: 'Who is the best QB in the NFL?',
+                    text: 'Who is the best QB in the NFL?',
                     choices: [
                         {
                             id: 'a',
@@ -78,7 +79,7 @@ class App extends Component{
                             text: 'Jay Cutler'
                         },
                         {
-                            id: 'a',
+                            id: 'c',
                             text: 'Tom Brady'
                         }
                     ],
@@ -89,10 +90,20 @@ class App extends Component{
             current: 1
         }
     }
+
+    setCurrent(current){
+        this.setState({current});
+    }
+
+    setScore(score){
+        this.setState({score});
+    }
+
     render(){
         return(
             <div>
-                <QuestionList {...this.state} />
+                <Scorebox {...this.state} />
+                <QuestionList {...this.state} setCurrent = {this.setCurrent.bind(this)} setScore = {this.setScore.bind(this)} />
             </div>
         )
     }
